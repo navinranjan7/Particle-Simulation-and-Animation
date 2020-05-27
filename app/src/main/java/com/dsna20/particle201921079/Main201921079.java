@@ -13,9 +13,11 @@ import android.widget.TextView;
 
 public class Main201921079 extends AppCompatActivity
         implements RanGenFragment.OnFragmentInteractionListener,
-        MinPQFragment.OnFragmentInteractionListener {
+        MinPQFragment.OnFragmentInteractionListener,
+        Particle201921079Fragment.OnFragmentInteractionListener{
 
     RanGenFragment mRandGen;
+    Particle201921079Fragment mParticle;
     MinPQFragment mMinPQ;
     MinPQ<Double> mDouble;
     @Override
@@ -24,8 +26,9 @@ public class Main201921079 extends AppCompatActivity
         setContentView(R.layout.activity_main201921079);
         mRandGen = new RanGenFragment();
         mMinPQ = new MinPQFragment();
+        mParticle = new Particle201921079Fragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment, mMinPQ).commit();
+                .add(R.id.fragment, mParticle).commit();
         mDouble = new MinPQ<Double>();
     }
 
@@ -45,6 +48,13 @@ public class Main201921079 extends AppCompatActivity
             case R.id.min_pq:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment, mMinPQ).commit();
+                break;
+            case R.id.particle:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment, mParticle).commit();
+                break;
+            case R.id.toggle:
+                mParticle.toggleAnimate();
                 break;
         }
         return super.onOptionsItemSelected(item);
